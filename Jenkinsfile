@@ -1,24 +1,12 @@
 pipeline {
-  environment {
-    registry = "https://hub.docker.com/r/kamaljits/laravel"
-    registryCredential = 'dockerhub'
-  }
-  agent any
-  stages {
-     stage('Initialize') {
-       steps {
-         script {
-        def dockerHome = tool 'myDocker'
-        env.PATH = "${dockerHome}/bin:${env.PATH}"
-         }
+    agent {
+        docker { image 'docker' }
     }
-     }
-    stage('Building image') {
-      steps{
-        script {
-          docker.build registry + ":$BUILD_NUMBER"
+    stages {
+        stage('Test') {
+            steps {
+                sh 'node --version'
+            }
         }
-      }
     }
-  }
 }
