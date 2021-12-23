@@ -31,7 +31,7 @@ RUN apt-get -y autoremove; \
     apt-get clean
 COPY ./*.sh /
 EXPOSE 80
-VOLUME [ "/var/www/html/laravelapp/" ]
+VOLUME [ "/var/www/html" ]
 
 ENTRYPOINT [ "/entrypoint.sh" ]
 
